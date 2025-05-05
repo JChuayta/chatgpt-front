@@ -56,12 +56,7 @@ export default function ChatPage() {
             {filteredMessages.map((msg: ChatMessage) => {
               console.log(user?.email, msg.displayName);
               if (msg.type === "bot") {
-                return (
-                  <GptMessage
-                    key={msg.id}
-                    text={msg.text}
-                  />
-                );
+                return <GptMessage key={msg.id} text={msg.text} />;
               }
               if (msg.displayName === user?.email) {
                 return <MyMessage key={msg.id} text={msg.text} />;

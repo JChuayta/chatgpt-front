@@ -44,9 +44,12 @@ const useMessages = (userUid: string | undefined) => {
           ...doc.data(),
         })) as ChatMessage[];
 
-        const allMessages = [...userMessages, ...botMessages].sort(
-          (a, b) => (a.createdAt?.seconds ?? 0) - (b.createdAt?.seconds ?? 0)
-        );
+      
+        const allMessages = [...userMessages, ...botMessages].sort((a, b) => {
+          const timeA = a.createdAt ? (a.createdAt.seconds ?? 0) : 0; // Si es un Timestamp, usa `seconds`
+          const timeB = b.createdAt ? (b.createdAt.seconds ?? 0) : 0;
+          return timeA - timeB;
+        });
 
         dispatch(setMessages(allMessages));
       });

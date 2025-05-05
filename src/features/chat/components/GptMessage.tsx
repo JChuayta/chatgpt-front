@@ -56,7 +56,7 @@ export const GptMessage = ({ text, isLoading = false }: Props) => {
   const [displayedText, setDisplayedText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Efecto para animación de escritura cuando no está cargando
+  
   useEffect(() => {
     if (isLoading) {
       setDisplayedText('');
@@ -68,7 +68,7 @@ export const GptMessage = ({ text, isLoading = false }: Props) => {
       const timeout = setTimeout(() => {
         setDisplayedText(prev => prev + text[currentIndex]);
         setCurrentIndex(prev => prev + 1);
-      }, 20); // Velocidad de escritura (ms por caracter)
+      }, 10); 
 
       return () => clearTimeout(timeout);
     }

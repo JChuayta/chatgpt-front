@@ -32,6 +32,7 @@ function getErrorMessage(code: string): string {
   return errorMessages[code] || "Error al iniciar sesión";
 }
 export default function LoginPage() {
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();

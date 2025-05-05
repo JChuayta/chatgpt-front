@@ -39,7 +39,7 @@ export const sendMessageToChat = createAsyncThunk<
 export const sendChatMessage = async (message: string, token: string) => {
   console.log(process.env.BASE_URL,"data")
   // const response = await fetch(`${process.env.BASE_URL}/chat`, {
-  const response = await fetch(`http://localhost:3001/chat`, {
+  const response = await fetch(`https://chatgpt-backend-gf2o.onrender.com/chat`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
