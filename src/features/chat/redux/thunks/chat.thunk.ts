@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "@store/store";
-
+import Cookies from "js-cookie";
 interface ChatRequest {
   message: string;
 }
@@ -17,7 +17,7 @@ export const sendMessageToChat = createAsyncThunk<
   ChatRequest,
   { rejectValue: string }
 >("chat/sendMessage", async ({ message }, thunkAPI) => {
-  const token = localStorage.getItem("token")
+  const token = Cookies.get("token");
 
   if (!token) {
     return thunkAPI.rejectWithValue("Token no disponible");
@@ -37,7 +37,7 @@ export const sendMessageToChat = createAsyncThunk<
 
 export const sendChatMessage = async (message: string, token: string) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/chat`, {
-  method: "POST",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,

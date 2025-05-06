@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "firebase/auth";
+import Cookies from "js-cookie";
 import { deserializeUser, SerializableUser } from "../../../../types/authTypes";
 import {
   loginWithEmail,
@@ -89,9 +90,9 @@ const authSlice = createSlice({
         state.loading = false;
         if (action.payload) {
           state.user = deserializeUser(action.payload);
-          localStorage.setItem("token", state.user.tokenManager.accessToken);
-          localStorage.setItem("uid", state.user.uid);
-          localStorage.setItem("displayName", state.user.email as string);
+          Cookies.set("token", state.user.tokenManager.accessToken);
+          Cookies.set("uid", state.user.uid);
+          Cookies.set("displayName", state.user.email as string);
         } else {
           state.user = null;
         }
