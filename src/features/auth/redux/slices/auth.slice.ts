@@ -74,6 +74,9 @@ const authSlice = createSlice({
         state.loading = false;
         if (action.payload) {
           state.user = deserializeUser(action.payload);
+          Cookies.set("token", state.user.tokenManager.accessToken);
+          Cookies.set("uid", state.user.uid);
+          Cookies.set("displayName", state.user.email as string);
         } else {
           state.user = null;
         }
