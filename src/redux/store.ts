@@ -9,14 +9,7 @@ export const store = configureStore({
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [
-          "auth/loginWithEmail/fulfilled",
-          "auth/googleLogin/fulfilled",
-          "auth/registerWithEmail/fulfilled",
-          "chat/setMessages"
-        ],
-      },
+      serializableCheck: false,
     }),
 });
 

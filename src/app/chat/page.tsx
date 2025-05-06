@@ -35,30 +35,18 @@ export default function ChatPage() {
           gap: 1,
         }}
       >
-        {/* {messages.length === 0 ? (
-          <div>Cargando mensajes...</div>
-        ) : (
-          filteredMessages.map((msg: ChatMessage) => {
-            console.log(user?.email, msg.displayName);
-            if (msg.type === "bot") {
-              return <GptMessage key={msg.id} text={msg.text} />;
-            }
-            if (msg.displayName === user?.email) {
-              return <MyMessage key={msg.id} text={msg.text} />;
-            }
-            return null;
-          })
-        )} */}
         {messages.length === 0 && loading ? (
           <div>Cargando mensajes...</div>
         ) : (
           <>
             {filteredMessages.map((msg: ChatMessage) => {
-              console.log(user?.email, msg.displayName);
               if (msg.type === "bot") {
                 return <GptMessage key={msg.id} text={msg.text} />;
               }
-              if (msg.displayName === user?.email) {
+              if (
+                msg.displayName === user?.email ||
+                msg.displayName === localStorage.getItem("displayName")
+              ) {
                 return <MyMessage key={msg.id} text={msg.text} />;
               }
               return null;

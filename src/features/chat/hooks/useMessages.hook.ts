@@ -1,3 +1,4 @@
+"use client"
 import { db } from "@lib/firebase/config";
 import { useAppDispatch } from "@store/hooks/useAppDispatch";
 import {
@@ -23,6 +24,9 @@ export interface ChatMessage {
 const MESSAGES_COLLECTION = "messages";
 
 const useMessages = (userUid: string | undefined) => {
+  if (typeof window !== "undefined" && userUid === undefined) {
+    userUid = localStorage.getItem("uid") as string;
+  }
   const dispatch = useAppDispatch();
   useEffect(() => {
     if (!userUid) return;

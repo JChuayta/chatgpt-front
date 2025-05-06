@@ -16,10 +16,11 @@ export default function RootLayout({
     <html lang="en">
       <body suppressHydrationWarning={true}>
         <ReduxProvider>
-          <EmotionProvider>{children}</EmotionProvider>
-          {/* <AuthListener> */}
-          {/* {children} */}
-          {/* </AuthListener> */}
+          <EmotionProvider>
+            {/* <AuthListener> */}
+              {children}
+              {/* </AuthListener> */}
+          </EmotionProvider>
         </ReduxProvider>
       </body>
     </html>

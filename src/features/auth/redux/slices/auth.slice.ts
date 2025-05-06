@@ -89,6 +89,9 @@ const authSlice = createSlice({
         state.loading = false;
         if (action.payload) {
           state.user = deserializeUser(action.payload);
+          localStorage.setItem("token", state.user.tokenManager.accessToken);
+          localStorage.setItem("uid", state.user.uid);
+          localStorage.setItem("displayName", state.user.email as string);
         } else {
           state.user = null;
         }

@@ -17,8 +17,7 @@ export const sendMessageToChat = createAsyncThunk<
   ChatRequest,
   { rejectValue: string }
 >("chat/sendMessage", async ({ message }, thunkAPI) => {
-  const state = thunkAPI.getState() as RootState;
-  const token = selectAuthToken(state);
+  const token = localStorage.getItem("token")
 
   if (!token) {
     return thunkAPI.rejectWithValue("Token no disponible");
@@ -37,10 +36,8 @@ export const sendMessageToChat = createAsyncThunk<
 });
 
 export const sendChatMessage = async (message: string, token: string) => {
-  console.log(process.env.BASE_URL,"data")
-  // const response = await fetch(`${process.env.BASE_URL}/chat`, {
-  const response = await fetch(`https://chatgpt-backend-gf2o.onrender.com/chat`, {
-    method: "POST",
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/chat`, {
+  method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,

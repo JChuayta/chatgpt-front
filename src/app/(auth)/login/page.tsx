@@ -32,10 +32,10 @@ function getErrorMessage(code: string): string {
   return errorMessages[code] || "Error al iniciar sesión";
 }
 export default function LoginPage() {
+  const router = useRouter();
   
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const router = useRouter();
   const { loading, error } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
