@@ -1,4 +1,3 @@
-import AuthListener from "@features/auth/components/AuthListener";
 import ReduxProvider from "@store/provider";
 import type { Metadata } from "next";
 import { EmotionProvider } from "../theme/EmotionProvider";
@@ -18,7 +17,9 @@ export default function RootLayout({
       <body suppressHydrationWarning={true}>
         <ReduxProvider>
           <EmotionProvider>
-            <AuthListener>{children}</AuthListener>
+            {/* <AuthListener> */}
+              {children}
+              {/* </AuthListener> */}
           </EmotionProvider>
         </ReduxProvider>
       </body>
